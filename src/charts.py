@@ -7,17 +7,23 @@ IMAGE_DIR.mkdir(exist_ok=True)
 
 import matplotlib.pyplot as plt
 
-# Fictional retail sales data
-products = ["Keyboard", "Mouse", "Monitor", "Headphones"]
-prices = [499, 299, 2499, 899]
-quantities = [12, 20, 5, 8]
+import pandas as pd
+
+# Load our CSV dataset
+df = pd.read_csv(BASE_DIR / "data" / "retail_sales.csv")
 
 # Calculate revenue
-revenues = []
+df["Revenue"] = df["Price"] * df["Quantity"]
 
-for i in range(len(products)):
-    revenue = prices[i] * quantities[i]
-    revenues.append(revenue)
+# Group sales by product
+summary = df.groupby("Product", sort=False).agg(
+    Revenue=("Revenue", "sum"),
+    Quantity=("Quantity", "sum")
+)
+
+products = summary.index.tolist()
+revenues = summary["Revenue"].tolist()
+quantities = summary["Quantity"].tolist()
 
 # Create a bar chart
 plt.figure(figsize=(9, 5))
