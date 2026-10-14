@@ -63,19 +63,28 @@ All data is fictional and used for educational purposes.
 ## How to Run
 
 1. Install Python 3.
+
 2. Download or clone this repository.
+
 3. Open the project folder in VS Code.
+
 4. Install the required libraries:
 
-   python -m pip install -r requirements.txt
+```bash
+python -m pip install -r requirements.txt
+```
 
 5. Run the analysis:
 
-   python src/analysis.py
+```bash
+python src/analysis.py
+```
 
 6. Generate the charts:
 
-   python src/charts.py
+```bash
+python src/charts.py
+```
 
 ## What I Learned
 
